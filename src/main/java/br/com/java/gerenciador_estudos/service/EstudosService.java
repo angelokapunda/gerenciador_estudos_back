@@ -70,4 +70,9 @@ public class EstudosService {
         BeanUtils.copyProperties(estudos, estudosAtual, "id");
         return salvar(estudosAtual);
     }
+
+    public void excluir (Long id) {
+        var estudos = buscarPorId(id);
+        estudosRepository.delete(estudos);
+    }
 }
