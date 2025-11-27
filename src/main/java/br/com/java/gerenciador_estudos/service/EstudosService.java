@@ -1,6 +1,7 @@
 package br.com.java.gerenciador_estudos.service;
 
 import br.com.java.gerenciador_estudos.domain.entity.Estudos;
+import br.com.java.gerenciador_estudos.domain.enums.Prioridade;
 import br.com.java.gerenciador_estudos.domain.enums.Status;
 import br.com.java.gerenciador_estudos.domain.exception.EstudoNaoEncontradoException;
 import br.com.java.gerenciador_estudos.domain.exception.RegraNegocioException;
@@ -43,8 +44,17 @@ public class EstudosService {
 
     }
 
-//    public List<Estudos> buscarPorPrioridade(String prioridade, String status, String assunto) {
-//        return estudosRepository.findByPrioridadeContainingAndStatusContainingAndAssuntoContaining(
-//                prioridade, status, assunto);
-//    }
+    public List<Estudos> buscarPorPrioridade(String prioridade) {
+        try {
+            Prioridade convertString = Prioridade.valueOf(prioridade.toUpperCase());
+            return estudosRepository.findByPrioridade(convertString);
+        } catch (IllegalArgumentException e) {
+            if (prioridade.equalsIgnoreCase("baixa") || prioridade.equalsIgnoreCase("media")
+                    || prioridade.equalsIgnoreCase("alta")) {
+                throw new EstudoNaoEncontradoException("Não tem nenhuma atividade com a Prioridade consultada");
+            }
+            throw new RegraNegocioException("Prioridade inválida. Verifique e tente novamente!");
+        }
+
+    }
 }
