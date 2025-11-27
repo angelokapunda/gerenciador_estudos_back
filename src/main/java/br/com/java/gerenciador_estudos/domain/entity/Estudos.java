@@ -1,4 +1,4 @@
-package br.com.java.gerenciador_estudos.entity;
+package br.com.java.gerenciador_estudos.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
