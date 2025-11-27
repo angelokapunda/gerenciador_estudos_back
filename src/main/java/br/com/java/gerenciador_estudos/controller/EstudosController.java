@@ -49,4 +49,9 @@ public class EstudosController {
     public ResponseEntity<List<Estudos>> buscarPorPrioridade (@RequestParam String prioridade) {
         return ResponseEntity.ok(estudosService.buscarPorPrioridade(prioridade));
     }
+
+    @GetMapping("/titulo")
+    public ResponseEntity<List<Estudos>> buscarPorTitulo(@RequestParam String titulo) {
+        return ResponseEntity.ok(estudosService.buscarPorTitulo(titulo));
+    }
 }

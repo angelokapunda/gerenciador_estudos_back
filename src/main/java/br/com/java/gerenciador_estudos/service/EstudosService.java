@@ -55,6 +55,9 @@ public class EstudosService {
             }
             throw new RegraNegocioException("Prioridade inválida. Verifique e tente novamente!");
         }
+    }
 
+    public List<Estudos> buscarPorTitulo (String titulo) {
+        return estudosRepository.findByTituloContainingIgnoreCase(titulo);
     }
 }
