@@ -6,6 +6,8 @@ import br.com.java.gerenciador_estudos.domain.enums.Status;
 import br.com.java.gerenciador_estudos.domain.exception.EstudoNaoEncontradoException;
 import br.com.java.gerenciador_estudos.domain.exception.RegraNegocioException;
 import br.com.java.gerenciador_estudos.repository.EstudosRepository;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ public class EstudosService {
     @Autowired
     private EstudosRepository estudosRepository;
 
+@Transactional
     public Estudos salvar (Estudos estudos) {
         return estudosRepository.save(estudos);
     }
@@ -59,5 +62,12 @@ public class EstudosService {
 
     public List<Estudos> buscarPorTitulo (String titulo) {
         return estudosRepository.findByTituloContainingIgnoreCase(titulo);
+    }
+
+    @Transactional
+    public Estudos atualizar ( Estudos estudos, Long id) {
+        var estudosAtual = buscarPorId(id);
+        BeanUtils.copyProperties(estudos, estudosAtual, "id");
+        return salvar(estudosAtual);
     }
 }
