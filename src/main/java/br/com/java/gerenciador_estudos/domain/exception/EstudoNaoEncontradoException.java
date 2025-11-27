@@ -9,4 +9,8 @@ public class EstudoNaoEncontradoException extends RuntimeException {
     public EstudoNaoEncontradoException (Long id) {
         super(String.format("O estudo de código %d, não esta cadastrado", id));
     }
+
+    public EstudoNaoEncontradoException (String mensagem) {
+        super(mensagem);
+    }
 }
