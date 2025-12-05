@@ -59,6 +59,11 @@ public class EstudosController {
         return ResponseEntity.ok(estudosService.buscarPorTitulo(titulo));
     }
 
+    @GetMapping("/pendentes")
+    public ResponseEntity<?> totalEstudosPendentes () {
+        var estudosPendentes = estudosService.contagemTarefas(Status.PENDENTE);
+        return ResponseEntity.ok().body(estudosPendentes);
+    }
     @GetMapping("/concluidos")
     public ResponseEntity<?> totalEstudosCocluidos () {
         var estudosConcluidos = estudosService.contagemTarefas(Status.CONCLUIDO);
