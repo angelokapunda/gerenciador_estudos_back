@@ -15,5 +15,5 @@ public interface EstudosRepository extends JpaRepository<Estudos, Long> {
     List<Estudos> findByPrioridade(Prioridade prioridade);
     List<Estudos> findByTituloContainingIgnoreCase(String assunto);
 
-    long countByStatus ( Status status);
+    long countByStatus (Status status);
 }

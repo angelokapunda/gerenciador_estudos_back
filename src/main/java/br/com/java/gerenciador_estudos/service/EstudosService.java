@@ -68,6 +68,10 @@ public class EstudosService {
         return estudosRepository.countByStatus(status);
     }
 
+    public long totalDeTarefas () {
+        return estudosRepository.count();
+    }
+
     @Transactional
     public Estudos atualizar ( Estudos estudos, Long id) {
         var estudosAtual = buscarPorId(id);
