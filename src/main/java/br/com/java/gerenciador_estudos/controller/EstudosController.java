@@ -59,6 +59,12 @@ public class EstudosController {
         return ResponseEntity.ok(estudosService.buscarPorTitulo(titulo));
     }
 
+    @GetMapping("/concluidos")
+    public ResponseEntity<?> totalEstudosCocluidos () {
+        var estudosConcluidos = estudosService.contagemTarefas(Status.CONCLUIDO);
+        return ResponseEntity.ok().body(estudosConcluidos);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Estudos> atualizar (@RequestBody Estudos estudos, @PathVariable Long id) {
         return ResponseEntity.ok().body(estudosService.atualizar(estudos, id));

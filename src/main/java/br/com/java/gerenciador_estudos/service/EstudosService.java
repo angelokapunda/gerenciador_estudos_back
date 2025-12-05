@@ -19,7 +19,7 @@ public class EstudosService {
     @Autowired
     private EstudosRepository estudosRepository;
 
-@Transactional
+    @Transactional
     public Estudos salvar (Estudos estudos) {
         return estudosRepository.save(estudos);
     }
@@ -62,6 +62,10 @@ public class EstudosService {
 
     public List<Estudos> buscarPorTitulo (String titulo) {
         return estudosRepository.findByTituloContainingIgnoreCase(titulo);
+    }
+
+    public long contagemTarefas (Status status) {
+        return estudosRepository.countByStatus(status);
     }
 
     @Transactional
